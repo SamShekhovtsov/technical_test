@@ -82,6 +82,7 @@ export class ApplicationDto extends PickType(Application, [
 
 export class BrokerApplicationPostResponseDto extends SuccessResponseDto {
   readonly loanAmount: number
+  readonly aboveAverage: boolean
 }
 
 class BrokerApplicationDto extends PickType(Application, [
