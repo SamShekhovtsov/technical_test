@@ -42,7 +42,7 @@ loadTasks();
       <ApplicationsCard :applications="applications" />
     </div>
     <div class="dashboard__actions">
-      <ActionsCard />
+      <ActionsCard @refresh-applications-list="loadApplications"/>
     </div>
     <div class="dashboard__tasks">
       <TasksCard :tasks="tasks" />

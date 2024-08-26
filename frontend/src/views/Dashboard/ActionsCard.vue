@@ -2,7 +2,9 @@
 import { api } from '@/api';
 import { useModal } from '@/composables/useModal';
 import { useToast } from '@/composables/useToast';
-import { ref } from 'vue';
+import { ref, defineEmits } from 'vue';
+
+const emit = defineEmits(["refresh-applications-list"]);
 const modal = useModal<boolean>()
 const toast = useToast()
 
@@ -27,28 +29,40 @@ const formData = ref({
 
 const submitApplication = async () => {
   const response = await api.applications.post(formData.value)
-  if (response.success) toast.success('Application Saved Successfully.')
-  else {
+  if (response.success) {
+    toast.success('Application Saved Successfully.')
+    resetTheLoanApplicationForm()
+    emit('refreshApplicationsList')
+  } else {
     toast.error('Error occurred while saving application')
-    formData.value.applicantName = '';
-    formData.value.applicantEmail = '';
-    formData.value.applicantMobilePhoneNumber = '';
-    formData.value.applicantAddress = '';
-    formData.value.annualIncomeBeforeTax = 0;
-    formData.value.incomingAddress = '';
-    formData.value.incomingDeposit = 0;
-    formData.value.incomingPrice = 0;
-    formData.value.incomingStampDuty = 0;
-    formData.value.loanAmount = 0;
-    formData.value.loanDuration = 0;
-    formData.value.monthlyExpenses = 0;
-    formData.value.outgoingAddress = '';
-    formData.value.outgoingMortgage = 0;
-    formData.value.outgoingValuation = 0;
-    formData.value.savingsContribution = 0;
+    resetTheLoanApplicationForm()
   }
   modal.confirm(false)
 }
+
+const resetTheLoanApplicationForm = () => {
+  formData.value.applicantName = '';
+  formData.value.applicantEmail = '';
+  formData.value.applicantMobilePhoneNumber = '';
+  formData.value.applicantAddress = '';
+  formData.value.annualIncomeBeforeTax = 0;
+  formData.value.incomingAddress = '';
+  formData.value.incomingDeposit = 0;
+  formData.value.incomingPrice = 0;
+  formData.value.incomingStampDuty = 0;
+  formData.value.loanAmount = 0;
+  formData.value.loanDuration = 0;
+  formData.value.monthlyExpenses = 0;
+  formData.value.outgoingAddress = '';
+  formData.value.outgoingMortgage = 0;
+  formData.value.outgoingValuation = 0;
+  formData.value.savingsContribution = 0;
+}
+
+const cancelForm = () => {  
+    resetTheLoanApplicationForm()
+    modal.confirm(false)
+} 
 </script>
 
 <template>
@@ -105,7 +119,7 @@ const submitApplication = async () => {
         <label for="savings_contribution">Savings Contribution</label>
         <BNumberInput v-model="formData.savingsContribution" id="savings_contribution" required />
         <BButton type="submit" variant="primary" label="Submit"></BButton>
-        <BButton label="Cancel" @click="modal.confirm(false)"></BButton>
+        <BButton label="Cancel" @click.prevent="cancelForm()"></BButton>
       </BForm>
 
       <template #footer>
