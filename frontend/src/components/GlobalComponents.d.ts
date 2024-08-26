@@ -1,5 +1,6 @@
 import type BAddressInput from '@/components/common/BAddressInput.vue';
 import type BButton from '@/components/common/BButton.vue';
+import type BForm from '@/components/common/BForm.vue';
 import type BCard from '@/components/common/BCard.vue';
 import type BDateRange from '@/components/common/BDateRange.vue';
 import type BDatepicker from '@/components/common/BDatepicker.vue';
@@ -17,6 +18,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BAddressInput: typeof BAddressInput;
     BButton: typeof BButton;
+    BForm: typeof BForm;
     BCard: typeof BCard;
     BDatepicker: typeof BDatepicker;
     BDateRange: typeof BDateRange;

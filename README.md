@@ -1,3 +1,24 @@
+# Test Task: Sem Shekhovtsov
+
+## package references fixes
+
+- for the frontend application - simply with npm audit fix
+- for the backend application, some packages are removed and missing are added:
+
+removed following unused, incompatible libraries: 
+	"js2xml": "^1.0.9"
+	"xmldom": "^0.6.0"
+added missing library:
+	"request": "^2.88.2"
+
+fixed package references with:
+	npm audit fix --force
+
+## Loan application form fix
+
+- added missing BForm element scripts
+- moved the buttons inside the form to be able to submit the form ;)
+
 <!-- omit in toc -->
 # Bridgit competency test
 

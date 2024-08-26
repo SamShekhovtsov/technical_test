@@ -65,7 +65,7 @@ const submitApplication = async () => {
     <BModal :visible="modal.isVisible.value" :confirm="modal.confirm">
       <template #header>Submit loan application</template>
 
-      <form @submit.prevent="submitApplication()">
+      <BForm @submit.prevent="submitApplication()">
         <!-- Need to change with v-for after change state with object -->
         <label for="applicant_name">Name</label>
         <BTextInput v-model="formData.applicantName" id="applicant_name" type="text" required />
@@ -104,11 +104,11 @@ const submitApplication = async () => {
         <BNumberInput v-model="formData.outgoingValuation" id="outgoing_valuation" required />
         <label for="savings_contribution">Savings Contribution</label>
         <BNumberInput v-model="formData.savingsContribution" id="savings_contribution" required />
-      </form>
-
-      <template #footer>
         <BButton type="submit" variant="primary" label="Submit"></BButton>
         <BButton label="Cancel" @click="modal.confirm(false)"></BButton>
+      </BForm>
+
+      <template #footer>
       </template>
     </BModal>
   </div>
