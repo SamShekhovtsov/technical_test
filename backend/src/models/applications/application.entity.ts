@@ -178,7 +178,7 @@ export class Application extends Model<Application> {
   @ApiProperty({ description: 'The remaining mortgage if any on the outgoing property in dollars' })
   @Column({
     type: DataType.DECIMAL(10, 2),
-    field: 'outgoing_valuation',
+    field: 'outgoing_mortgage',
   })
   @IsNumber()
   outgoingMortgage: number;
