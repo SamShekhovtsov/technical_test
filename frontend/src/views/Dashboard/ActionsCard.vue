@@ -62,7 +62,11 @@ const resetTheLoanApplicationForm = () => {
 const cancelForm = () => {  
     resetTheLoanApplicationForm()
     modal.confirm(false)
-} 
+}
+
+const submitForm = () => {
+  document.getElementById('btnSubmitLoanForm').click()
+}
 </script>
 
 <template>
@@ -79,7 +83,7 @@ const cancelForm = () => {
     <BModal :visible="modal.isVisible.value" :confirm="modal.confirm">
       <template #header>Submit loan application</template>
 
-      <BForm @submit.prevent="submitApplication()">
+      <BForm id="loanApplicationForm" @submit.prevent="submitApplication()">
         <!-- Need to change with v-for after change state with object -->
         <label for="applicant_name">Name</label>
         <BTextInput v-model="formData.applicantName" id="applicant_name" type="text" required />
@@ -118,11 +122,12 @@ const cancelForm = () => {
         <BNumberInput v-model="formData.outgoingValuation" id="outgoing_valuation" required />
         <label for="savings_contribution">Savings Contribution</label>
         <BNumberInput v-model="formData.savingsContribution" id="savings_contribution" required />
-        <BButton type="submit" variant="primary" label="Submit"></BButton>
-        <BButton label="Cancel" @click.prevent="cancelForm()"></BButton>
+        <BButton id="btnSubmitLoanForm" type="submit"></BButton>
       </BForm>
 
       <template #footer>
+        <BButton type="button" variant="primary" label="Submit" @click.prevent="submitForm()"></BButton>
+        <BButton label="Cancel" @click.prevent="cancelForm()"></BButton>
       </template>
     </BModal>
   </div>
@@ -145,6 +150,10 @@ const cancelForm = () => {
       flex: 1 1 calc((100% - 2rem) / 3);
     }
   }
+}
+
+button#btnSubmitLoanForm {
+  visibility: hidden;
 }
 
 .b-card {

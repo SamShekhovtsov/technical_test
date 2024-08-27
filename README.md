@@ -18,6 +18,11 @@ fixed package references with:
 
 - added missing BForm element scripts
 - moved the buttons inside the form to be able to submit the form ;)
+- added applications form live refresh -> events handling
+- added form reset after submission
+- fixed the outgoing_mortgage database table column name
+- fixed saving the Loan Application into the database -> by adding the @IsString attribute
+- added the aboveAverage boolean flag to the POST action response
 
 <!-- omit in toc -->
 # Bridgit competency test
